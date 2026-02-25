@@ -1,202 +1,197 @@
 # Power BI Sales Analytics with Executive Dashboards & Paginated Reporting
 
+---
+
 ## Project Overview
-This project demonstrates end-to-end business intelligence development using Power BI, including executive dashboards, advanced DAX measures, and paginated reporting for detailed transaction-level analysis.
+
+This project demonstrates end-to-end business intelligence development using Microsoft Power BI, combining executive dashboards, advanced DAX calculations, and paginated reporting for detailed transactional analysis.
+
+The solution showcases both interactive analytics and structured enterprise-style reporting suitable for business performance monitoring and decision support.
+
+---
 
 ## Key Highlights
-- Executive sales performance dashboard
-- Detailed sales analytics report
-- Paginated transaction reporting (Power BI Report Builder)
-- Custom DAX measures for KPIs
-- Professional dashboard design and UX
 
-## Tools Used
-- Power BI Desktop
-- Power BI Report Builder
-- DAX
-- Excel / Superstore Dataset
+- Executive sales performance dashboard  
+- Detailed sales analytics report  
+- Paginated transaction reporting using Power BI Report Builder  
+- Custom DAX measures supporting KPI analysis  
+- Professional dashboard layout and user-focused design  
 
-## Repository Structure
-- `/data` → Dataset
-- `/powerbi` → Power BI reports
-- `/paginated-reports` → Paginated reports (.rdl)
-- `/dax` → Measures documentation
-- `/screenshots` → Dashboard previews
+---
 
-## Author
-** Obianuju Lynda Nzurumike**  
-Data Analyst | BI Developer | Data Analytics Engineer
+## Data Source
 
-DAX Measures & Calculations
+**Dataset:** Superstore Sales Dataset (sample BI dataset)
 
-This project makes extensive use of DAX (Data Analysis Expressions) to support executive-level analytics, year-over-year comparisons, and paginated reporting.
+Includes:
 
-🔹 Core Measures
-Total Sales =
-SUM ( Fact_Sales[Sales] )
+- Customer information  
+- Product categories and subcategories  
+- Sales transactions  
+- Profitability data  
+- Shipping details  
 
-Total Profit =
-SUM ( Fact_Sales[Profit] )
+---
 
-Total Quantity =
-SUM ( Fact_Sales[Quantity] )
+## Tools & Technologies
 
-🔹 Time Intelligence Measures
-Sales YTD =
-TOTALYTD (
-    [Total Sales],
-    Dim_Date[Date]
-)
+- **Power BI Desktop** – Dashboard development  
+- **Power BI Service** – Report publishing and sharing  
+- **Power BI Report Builder** – Paginated reporting  
+- **DAX (Data Analysis Expressions)** – Measures and KPIs  
+- **GitHub** – Documentation and version control  
 
-Sales LY =
-CALCULATE (
-    [Total Sales],
-    SAMEPERIODLASTYEAR ( Dim_Date[Date] )
-)
+---
 
-Sales YoY % =
-DIVIDE (
-    [Total Sales] - [Sales LY],
-    [Sales LY]
-)
+## Project Components
 
-🔹 Profitability Metrics
-Profit Margin % =
-DIVIDE (
-    [Total Profit],
-    [Total Sales]
-)
-Average Order Value =
-DIVIDE (
-    [Total Sales],
-    DISTINCTCOUNT ( Fact_Sales[Order ID] )
-)
+### Executive Dashboard
 
-🔹 Paginated Reporting Support
+Provides high-level business performance insights including:
 
-To support Power BI Paginated Reports, measures were optimized for:
+- Revenue trends  
+- Profitability indicators  
+- Regional sales distribution  
+- Category-level performance analysis  
+- KPI tracking  
 
-Row-level detail rendering
+Designed primarily for executive decision-making.
 
-Parameter-driven filtering (Year selection)
+---
 
-Print-friendly layouts
+### Detailed Sales Analysis Dashboard
 
-Example Year filter logic used in paginated datasets:
+Focuses on deeper analytical insights:
 
-IF (
-    SELECTEDVALUE ( Dim_Date[Year] ) = "ALL",
-    TRUE(),
-    Dim_Date[Year] = SELECTEDVALUE ( Dim_Date[Year] )
-)
-🔹 Design Considerations
+- Year-over-year performance metrics  
+- Top customers and products analysis  
+- Interactive filtering by year, region, category, and segment  
+- Transaction-level summaries  
 
-Measures were created at semantic model level to ensure reuse across:
+---
 
-Executive dashboards
+### Paginated Reporting (Key Feature)
 
-Detailed analysis pages
+Developed using **Power BI Report Builder** to demonstrate enterprise reporting capabilities:
 
-Paginated reports
+- Pixel-perfect formatted reports  
+- Parameterized year filtering  
+- Transaction-level tabular reporting  
+- Print-ready professional layout  
+- Export support (PDF, Excel, Print)
 
-Time intelligence relies on a dedicated Date Dimension
+This component highlights advanced reporting skills beyond standard dashboard development.
 
-Paginated Reporting (Power BI Report Builder)
+---
 
-This project includes a fully developed Paginated Report created using Power BI Report Builder to demonstrate advanced reporting capabilities such as parameterization, DAX-based dataset queries, and print-optimized layout design.
+## Key DAX Measures
 
-Report Overview
+Below are selected DAX measures developed for KPI tracking, executive dashboards, and paginated reporting.
+Examples of measures implemented:
 
-The paginated report delivers a structured, print-ready Sales Transaction Report designed for operational reporting, auditing, and detailed transaction analysis. It complements the interactive dashboards by providing highly formatted tabular output suitable for export to PDF, Excel, or print distribution.
+- Total Sales  
+- Total Profit  
+- Profit Margin %  
+- Sales Year-to-Date (YTD)  
+- Year-over-Year Growth  
+- Average Order Value  
 
-Dataset and Query Design
-
-Dataset sourced from a published Power BI semantic model.
-
-Custom DAX query dataset used instead of a direct table connection.
-
-Parameter-driven filtering implemented using a report parameter (@Year).
-
-Conditional logic supports both:
-
-Single-year filtering
-
-Full dataset view ("All Years")
-
-Example filtering logic:
-
-IF(
-    SelectedYear = "ALL",
-    TRUE(),
-    Dim_Date[Year] = VALUE(SelectedYear)
-)
-
-This ensures compatibility between numeric date fields and text-based parameter values.
-
-Parameter Implementation
-
-Year parameter configured with:
-
-Available values list (2015–2019 plus "All Years")
-
-Default value handling
-
-Parameter displayed dynamically in the report header.
-
-Used within the DAX dataset query to control filtering.
-
-Report Layout and Formatting
-
-Corporate-style header including:
-
-Report title
-
-Prepared-by information
-
-Generated timestamp
-
-Selected year indicator
-
-Tabular layout optimized for readability:
-
-Alternating row shading using RowNumber(Nothing)
-
-Consistent header styling
-
-Currency formatting for sales and profit
-
-Designed specifically for export and print fidelity.
-
-Key Report Fields
-
-Order Date
-
-Customer Name
-
-Product Name
-
-Ship Mode
+### Measures and their formula's
 
 Total Sales
 
+Total Sales = SUM('Orders'[Sales])
+
 Total Profit
 
-Technical Skills Demonstrated
+Total Profit = SUM('Orders'[Profit])
 
-Power BI Report Builder paginated report development
+Total Quantity
 
-DAX query authoring for report datasets
+Total Quantity = SUM('Orders'[Quantity])
+Profitability Measures
 
-Parameterized report filtering logic
+Profit Margin %
 
-Print-ready report design and formatting
+Profit Margin % =
+DIVIDE([Total Profit], [Total Sales], 0)
 
-Integration between Power BI semantic model and paginated reports
+Average Order Value
 
-Deliverables
+Average Order Value =
+DIVIDE([Total Sales], DISTINCTCOUNT('Orders'[Order ID]), 0)
+Time Intelligence Measures
 
-.rdl paginated report file
+Sales Year-to-Date (YTD)
 
-Power BI dataset connection
+Sales YTD =
+TOTALYTD([Total Sales], 'Dim_Date'[Date])
 
-Exportable report output (PDF/Excel compatible)
+Profit Year-to-Date
+
+Profit YTD =
+TOTALYTD([Total Profit], 'Dim_Date'[Date])
+
+Sales Last Year
+
+Sales LY =
+CALCULATE([Total Sales], SAMEPERIODLASTYEAR('Dim_Date'[Date]))
+
+Year-over-Year Growth %
+
+Sales YoY % =
+DIVIDE([Total Sales] - [Sales LY], [Sales LY], 0)
+Reporting Support Measures (Paginated Reports)
+
+Selected Year Parameter Display
+
+Selected Year Label =
+IF(
+    ISBLANK(SELECTEDVALUE('Dim_Date'[Year])),
+    "All Years",
+    SELECTEDVALUE('Dim_Date'[Year])
+)
+
+Used for dynamic titles and paginated report headers.
+
+These measures support executive dashboards, detailed analytical reports, and paginated transaction reporting.
+
+---
+
+## Repository Structure
+Power-BI-Sales-Analytics-Project/
+│
+├── data/ # Dataset files
+├── dashboards/ # Power BI dashboard (.pbix) files
+├── paginated-reports/ # Paginated report (.rdl) files
+├── dax/ # DAX measures documentation
+├── images/ # Dashboard screenshots
+└── README.md # Project documentation
+
+
+---
+
+## Skills Demonstrated
+
+- Business Intelligence development  
+- Data modeling and transformation  
+- Advanced DAX calculations  
+- Dashboard design and storytelling  
+- Paginated enterprise reporting  
+- Technical documentation and version control  
+
+---
+
+## Future Improvements
+
+- Automated dataset refresh pipeline  
+- Expanded KPI framework  
+
+---
+
+## Author
+
+**Obianuju Lynda Nzurumike**  
+Data Analyst |BI Developer| Data Engineer| Business Intelligence analyst
+---
