@@ -101,3 +101,102 @@ Paginated reports
 
 Time intelligence relies on a dedicated Date Dimension
 
+Paginated Reporting (Power BI Report Builder)
+
+This project includes a fully developed Paginated Report created using Power BI Report Builder to demonstrate advanced reporting capabilities such as parameterization, DAX-based dataset queries, and print-optimized layout design.
+
+Report Overview
+
+The paginated report delivers a structured, print-ready Sales Transaction Report designed for operational reporting, auditing, and detailed transaction analysis. It complements the interactive dashboards by providing highly formatted tabular output suitable for export to PDF, Excel, or print distribution.
+
+Dataset and Query Design
+
+Dataset sourced from a published Power BI semantic model.
+
+Custom DAX query dataset used instead of a direct table connection.
+
+Parameter-driven filtering implemented using a report parameter (@Year).
+
+Conditional logic supports both:
+
+Single-year filtering
+
+Full dataset view ("All Years")
+
+Example filtering logic:
+
+IF(
+    SelectedYear = "ALL",
+    TRUE(),
+    Dim_Date[Year] = VALUE(SelectedYear)
+)
+
+This ensures compatibility between numeric date fields and text-based parameter values.
+
+Parameter Implementation
+
+Year parameter configured with:
+
+Available values list (2015–2019 plus "All Years")
+
+Default value handling
+
+Parameter displayed dynamically in the report header.
+
+Used within the DAX dataset query to control filtering.
+
+Report Layout and Formatting
+
+Corporate-style header including:
+
+Report title
+
+Prepared-by information
+
+Generated timestamp
+
+Selected year indicator
+
+Tabular layout optimized for readability:
+
+Alternating row shading using RowNumber(Nothing)
+
+Consistent header styling
+
+Currency formatting for sales and profit
+
+Designed specifically for export and print fidelity.
+
+Key Report Fields
+
+Order Date
+
+Customer Name
+
+Product Name
+
+Ship Mode
+
+Total Sales
+
+Total Profit
+
+Technical Skills Demonstrated
+
+Power BI Report Builder paginated report development
+
+DAX query authoring for report datasets
+
+Parameterized report filtering logic
+
+Print-ready report design and formatting
+
+Integration between Power BI semantic model and paginated reports
+
+Deliverables
+
+.rdl paginated report file
+
+Power BI dataset connection
+
+Exportable report output (PDF/Excel compatible)
