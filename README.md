@@ -99,52 +99,53 @@ Examples of measures implemented:
 
 ### Measures and their formula's
 
-Total Sales
+1. Total Sales
 
 Total Sales = SUM('Orders'[Sales])
 
-Total Profit
+2. Total Profit
 
 Total Profit = SUM('Orders'[Profit])
 
-Total Quantity
+3. Total Quantity
 
 Total Quantity = SUM('Orders'[Quantity])
 Profitability Measures
 
-Profit Margin %
+4. Profit Margin %
 
 Profit Margin % =
 DIVIDE([Total Profit], [Total Sales], 0)
 
-Average Order Value
+5. Average Order Value
 
 Average Order Value =
 DIVIDE([Total Sales], DISTINCTCOUNT('Orders'[Order ID]), 0)
 Time Intelligence Measures
 
-Sales Year-to-Date (YTD)
+6. Sales Year-to-Date (YTD)
 
 Sales YTD =
 TOTALYTD([Total Sales], 'Dim_Date'[Date])
 
-Profit Year-to-Date
+7. Profit Year-to-Date
 
 Profit YTD =
 TOTALYTD([Total Profit], 'Dim_Date'[Date])
 
-Sales Last Year
+8. Sales Last Year
 
 Sales LY =
 CALCULATE([Total Sales], SAMEPERIODLASTYEAR('Dim_Date'[Date]))
 
-Year-over-Year Growth %
+9. Year-over-Year Growth %
 
 Sales YoY % =
 DIVIDE([Total Sales] - [Sales LY], [Sales LY], 0)
-Reporting Support Measures (Paginated Reports)
 
-Selected Year Parameter Display
+### Reporting Support Measures (Paginated Reports)
+
+10. Selected Year Parameter Display
 
 Selected Year Label =
 IF(
